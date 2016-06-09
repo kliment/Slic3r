@@ -70,8 +70,11 @@ add_library(clipper STATIC ${LIBDIR}/clipper.cpp)
 add_library(polypartition STATIC ${LIBDIR}/polypartition.cpp)
 add_library(poly2tri STATIC ${LIBDIR}/poly2tri/sweep/sweep.cc ${LIBDIR}/poly2tri/sweep/sweep_context.cc ${LIBDIR}/poly2tri/sweep/cdt.cc ${LIBDIR}/poly2tri/sweep/advancing_front.cc ${LIBDIR}/poly2tri/common/shapes.cc)
 add_executable(slic3r slic3r.cpp)
+add_executable(stl2pov stl2pov.cpp)
 set_target_properties(slic3r PROPERTIES LINK_SEARCH_START_STATIC 1)
 set_target_properties(slic3r PROPERTIES LINK_SEARCH_END_STATIC 1)
+set_target_properties(stl2pov PROPERTIES LINK_SEARCH_START_STATIC 1)
+set_target_properties(stl2pov PROPERTIES LINK_SEARCH_END_STATIC 1)
 set(wxWidgets_USE_STATIC)
 SET(wxWidgets_USE_LIBS)
 
@@ -97,10 +100,12 @@ IF(wxWidgets_FOUND)
     add_library(slic3r_gui STATIC ${LIBDIR}/slic3r/GUI/3DScene.cpp ${LIBDIR}/slic3r/GUI/GUI.cpp)
     #only build GUI lib if building with wx
     target_link_libraries (slic3r slic3r_gui libslic3r admesh clipper polypartition poly2tri ${Boost_LIBRARIES} ${wxWidgets_LIBRARIES})
+    target_link_libraries (stl2pov admesh)
 ELSE(wxWidgets_FOUND)
     # For convenience. When we cannot continue, inform the user
     MESSAGE("wx not found!")
     target_link_libraries (slic3r libslic3r admesh clipper polypartition poly2tri ${Boost_LIBRARIES})
+    target_link_libraries (stl2pov admesh)
     #skip gui when no wx included
 ENDIF(wxWidgets_FOUND)
 
