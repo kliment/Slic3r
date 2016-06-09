@@ -1,1 +1,1 @@
-pvengine fast.pov +KFI0 +KFF6 +KF6 +KI0 +Orender.png
+pvengine fast.pov +KFI1 +KFF6 +KF6 +KI1 +Orender.png

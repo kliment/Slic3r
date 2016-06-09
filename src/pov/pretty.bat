@@ -1,1 +1,1 @@
-pvengine pretty.pov +KFI0 +KFF6 +KF6 +KI0 +A +Orender.png
+pvengine pretty.pov +KFI1 +KFF6 +KF6 +KI1 +A +Orender.png
